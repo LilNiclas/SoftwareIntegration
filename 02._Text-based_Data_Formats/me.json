@@ -1,0 +1,11 @@
+{
+    "Name" : "Niclas",
+    "Age" : "22",
+    "Hobbies" : ["dope", "cope", "slope"],
+    "family" : 
+    [
+        {
+            "role" : "dad"
+        }
+    ]
+}

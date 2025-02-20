@@ -33,4 +33,4 @@ app.get("/events/publish", (req,res) => {
 const PORT = 8080;
 app.listen(PORT, () => console.log('Server is running', PORT));
 
-//Scalability er rigtig svært med long polling.
+//Scalability er rigtig svært med long polling.Æ

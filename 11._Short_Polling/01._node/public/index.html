@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Short Polling</title>
+</head>
+<body>
+    <h1>Short Polling</h1>
+
+    <div id="randomnumber"></div>
+    <script>
+        const randomNumbersDiv = document.getElementById("randomnumber");
+
+        const DELAY = 1000;
+        //Short Polling example. Short polling uses a lot of resources, becuase of the many request.
+        async function poll() {
+            const response = await fetch("/simulatenewnumbers");
+            const result = await response.json(); //Forklar hvorfor vi awaiter response
+
+            randomNumbersDiv.textContent = result.data;
+        }
+
+        setInterval(poll, DELAY);
+    </script>
+
+</body>
+</html>

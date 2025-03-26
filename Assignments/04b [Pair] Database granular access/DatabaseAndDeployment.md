@@ -55,21 +55,21 @@ Giv denne Powershell kommando
 docker run -d --name my-postgres -p 5431:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=123 -e POSTGRES_DB=goats_db -v ${PWD}/init.sql:/docker-entrypoint-initdb.d/init.sql:ro -v my_pgdata:/var/lib/postgresql/data postgres:latest
 ```
 
--d: Kør containeren i baggrunden
+`-d`: Kør containeren i baggrunden
 
---name my-postgres: Navn til container
+`--name my-postgres`: Navn til container
 
--p 5431:5432: Port 5432 fra containeren til port 5431 på din maskine.
+`-p 5431:5432`: Port 5432 fra containeren til port 5431 på din maskine.
 
--e POSTGRES_USER=admin: PostgreSQL brugeren.
+`-e POSTGRES_USER=admin`: PostgreSQL brugeren.
 
--e POSTGRES_PASSWORD=123: kodeorder.
+`-e POSTGRES_PASSWORD=123`: kodeorder.
 
--e POSTGRES_DB=goats_db: Opret database med navnet goats_db.
+`-e POSTGRES_DB=goats_db`: Opret database med navnet goats_db.
 
--v ${PWD}/init.sql:/docker-entrypoint-initdb.d/init.sql:ro: Link init.sql til containeren.
+`-v ${PWD}/init.sql:/docker-entrypoint-initdb.d/init.sql:ro`: Link init.sql til containeren.
 
--v my_pgdata:/var/lib/postgresql/data: Behold data, så den ikke forsvinder når containeren stoppes.
+`-v my_pgdata:/var/lib/postgresql/data`: Behold data, så den ikke forsvinder når containeren stoppes.
 
 ## 3. Verificer at Containeren Kører
 ```powershell
@@ -79,12 +79,14 @@ docker ps
 ## 4. Forbind til Databasen
 
 - Lokalt:
-psql -h localhost -p 5431 -U admin_user -d goats_db
-
+    ```powershell
+    psql -h localhost -p 5431 -U admin_user -d goats_db
+    ```
+    
 - På en anden maskine: Erstat IP-adressen 192.xxx.xx.x og porten 5431 med de rigtige oplysninger:
-```powershell
-psql -h 192.xxx.xx.xx -p 5431 -U admin_user -d goats_db
-```
+    ```powershell
+    psql -h 192.xxx.xx.xx -p 5431 -U admin_user -d goats_db
+    ```
 
 ## 5. Verificer indholdet i Databasen
 Når du er logget ind på PostgresSQL, kan du tjekke om din tabel er oprettet korrekt
@@ -95,8 +97,9 @@ Når du er logget ind på PostgresSQL, kan du tjekke om din tabel er oprettet ko
     ```
 
 - For at se dataen i tabellen
+    ```sql
     SELECT* FROM goats;
-
+    ```
 
 ## 6. Fejlhåntering hvis indholdet i databasen ikke er der (Hvis nødvendigt)
 Hvis containeren ikke har kørt init.sql korrekt, kan du manuelt eksekvere denne fil i containeren med denne PowerShell-kommando:

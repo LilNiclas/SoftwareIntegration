@@ -1,8 +1,15 @@
--- Drop and create DB
+-- Drop database if it exists
 DROP DATABASE IF EXISTS goats_db;
+
+-- Drop users if they exist
+DROP ROLE IF EXISTS admin_user;
+DROP ROLE IF EXISTS policy_user;
+DROP ROLE IF EXISTS read_user;
+
+-- Create database
 CREATE DATABASE goats_db;
 
--- Connect to DB
+-- Connect to database
 \c goats_db;
 
 -- Create Table
@@ -37,3 +44,9 @@ ALTER TABLE goats ENABLE ROW LEVEL SECURITY;
 CREATE POLICY select_policy ON goats
     FOR SELECT TO policy_user
     USING (id = 3);
+
+-- Admin user all
+CREATE POLICY admin_full_access ON goats
+    FOR ALL TO admin_user
+    USING (true);
+

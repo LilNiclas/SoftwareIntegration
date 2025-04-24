@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<body>
+    <h2>Basic form</h2>
+    <form action="http://localhost:8000/form" method="POST">
+        <label for="username">Username</label>
+        <input type="text" name="username" placeholder="username">
+
+        <label for="password">Passwrod</label>
+        <input type="password" name="password" placeholder="password...">
+
+        <input type="submit" value="Send Form Data">
+    </form>
+
+    <h2>File Form</h2>
+    <form action="http://localhost:8000/fileform">File</form>
+        <label for="file">File</label>
+        <input type="file" name="file">
+
+        <label>Description</label>
+        <input type="text">
+</body>
+</html>

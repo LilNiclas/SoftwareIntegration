@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.12.6/shaka-player.compiled.js" integrity="sha512-tFq8ZxX0hhNnwiPQFvCZVNEXj4jwMo1Lp9r5rLr3aeZk/+rKPmOGiBr2n7tCnHbrY3/RuYu1KUTZwpKWOwmDOw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>MPEG-DASH</title>
+</head>
+<body>
+    <video id="video-player" style="width: 98vw; height: 98vh; background-color: black;" controls></video>
+    
+    <script>
+        const video = document.getElementById("video-player");
+        const player = new shaka.Player(video);
+
+        async function init() {
+            try {
+                await player.load("/playlist.mpd");
+                console.log("shaka player loaded.")
+            } catch (error) {
+                console.log("Error loading the manifest file", error);
+            }
+        }
+        document.addEventListener("DOMContentLoaded", init);
+
+        player.addEventListener("adaptation", () => {
+            const variant = player.getVariantTracks().find((track) => track.active);
+            console.log(`[SHAKA] Adapted to ${variant.height}p ${variant.bandWidth}bps`);
+        });
+    </script>
+
+    <p>Commands</p>
+    <p>cd videos</p>
+    <p>
+        ffmpeg -i input.mp4 \
+        -map 0:v -map 0:a -b:v:0 300k -s:v:0 426x240 -profile:v:0 baseline -b:a:0 64k \
+        -map 0:v -map 0:a -b:v:1 700k -s:v:1 640x360 -profile:v:1 main     -b:a:1 96k \
+        -map 0:v -map 0:a -b:v:2 1500k -s:v:2 1280x720 -profile:v:2 high   -b:a:2 128k \
+        -f dash playlist.mpd
+    </p>
+    <p>Lots chunks with mediaframes are created</p>
+    <p>Lots chunks with mediaframes are created</p>
+
+
+
+
+</body>
+</html>

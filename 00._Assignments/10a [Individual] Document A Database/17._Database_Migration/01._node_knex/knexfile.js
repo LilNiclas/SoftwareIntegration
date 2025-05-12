@@ -9,13 +9,9 @@ export default {
     database: "mydatabase",
     user: "myuser",
     password: "mypassword",
-    host: "localhost"
+    host: "localhost",
   },
   migrations: {
-    directory: './migrations',
     tableName: 'knex_migrations'
-  },
-  seeds: {
-    directory: './seeds'
   }
 };

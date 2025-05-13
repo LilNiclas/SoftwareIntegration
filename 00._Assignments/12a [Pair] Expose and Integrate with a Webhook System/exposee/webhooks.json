@@ -1,0 +1,10 @@
+[
+  {
+    "url": "https://f66d-89-150-162-188.ngrok-free.app/webhook",
+    "event": "payment_received"
+  },
+  {
+    "url": "https://f66d-89-150-162-188.ngrok-free.app/webhook",
+    "event": "payment_received"
+  }
+]

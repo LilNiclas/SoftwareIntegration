@@ -40,10 +40,10 @@ You should receive:
 Ask your friend to trigger a ping. When the ping has been triggered you should receive something like this:
 Received webhook event: { event: 'ping', message: 'Webhook test successful' } 
 In your ngrok terminal you should also this
-![alt text](integrator2.png)
+![alt text](images/integrator2.png)
 
 The exposee will received this in their terminal when a new webhook has been registered
-![alt text](integrator2.png)
+![alt text](images/integrator2.png)
 
 ## Unregister Your Webhook
 When you’re done, you can unregister your webhook:
@@ -53,3 +53,6 @@ curl -X POST https://f3a7-87-49-45-233.ngrok-free.app/unregister \
 -H "Content-Type: application/json" \
 -d '{"url": "https://xyz123.ngrok-free.app/webhook", "event": "payment_received"}'
 ```
+
+
+__Yderligere billeder kan findes i integrator/images__

@@ -26,6 +26,7 @@ Send this URL to the Integrator, so they can register their webhook.
 ## Checking Webhooks
 You can check the registered webhooks in the webhooks.json file inside the exposee directory:
 exposee/webhooks.json
+![alt text](exposee2.png)
 
 
 ## Ping the Integrator
@@ -45,4 +46,4 @@ In your ngrok terminal, you can track all HTTP requests being sent to your serve
 - Webhook unregistrations
 - Ping requests
 
-![alt text](image.png)
+![alt text](exposee1.png)

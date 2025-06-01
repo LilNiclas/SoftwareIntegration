@@ -105,7 +105,7 @@ Når du er logget ind på PostgresSQL, kan du tjekke om din tabel er oprettet ko
 Hvis containeren ikke har kørt init.sql korrekt, kan du manuelt eksekvere denne fil i containeren med denne PowerShell-kommando:
 
 ```powershell
-Get-Content .\init.sql | docker exec -i my-postgres psql -U postgres -d goats_db
+Get-Content .\init.sql | docker exec -i my-postgres psql -U admin -d goats_db
 ```
 
 Eller, hvis ${PWD} ikke fungerer, kan du bruge den fulde sti til init.sql:

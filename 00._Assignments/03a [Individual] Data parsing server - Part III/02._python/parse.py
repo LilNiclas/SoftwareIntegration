@@ -4,8 +4,6 @@ import csv
 import yaml
 import xml.etree.ElementTree as ET
 
-DATA_FOLDER = r"C:\Users\nicla\OneDrive\Documents\SystemIntegration\SoftwareIntegration\Assignments\03a [Individual] Data parsing server - Part III\data"
-
 def parse_txt(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
         return f.read().splitlines()

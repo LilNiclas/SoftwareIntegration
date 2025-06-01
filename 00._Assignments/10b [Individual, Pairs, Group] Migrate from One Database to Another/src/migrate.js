@@ -6,13 +6,11 @@ import Knex from 'knex';
 
 const BATCH_SIZE = 500;
 
-// ───────────────────────────────
-// 1) Parse .env.source + .env.target
-// ───────────────────────────────
+//parse env
 function loadEnv(file) {
   const envPath = path.resolve(process.cwd(), file);
   if (!fs.existsSync(envPath)) {
-    console.error(`❌ Could not find ${file} in ${process.cwd()}`);
+    console.error(`Could not find ${file} in ${process.cwd()}`);
     process.exit(1);
   }
   return dotenv.parse(fs.readFileSync(envPath));
@@ -21,9 +19,7 @@ function loadEnv(file) {
 const srcEnv    = loadEnv('.env.source');
 const targetEnv = loadEnv('.env.target');
 
-// ───────────────────────────────
-// 2) Build Knex configs
-// ───────────────────────────────
+//Knex config
 const sourceConfig = {
   client: 'pg',
   connection: {
@@ -51,24 +47,20 @@ const targetConfig = {
   pool:       { min: 0, max: 10 },
 };
 
-// ───────────────────────────────
-// 3) Main migration routine
-// ───────────────────────────────
+//Migration in main
 async function main() {
   const src = Knex(sourceConfig);
   const tgt = Knex(targetConfig);
 
   try {
-    console.log('🔧 Running SOURCE migrations…');
+    //src setup
     await src.migrate.latest();
-
-    console.log('🌱 Running SOURCE seeds…');
     await src.seed.run();
 
-    console.log('🔧 Running TARGET migrations…');
+    //tgt schema
     await tgt.migrate.latest();
 
-    console.log('📦 Copying data from SOURCE → TARGET…');
+    //migrate data from src to tgt
     const tables = await src('information_schema.tables')
       .select('table_name')
       .where({
@@ -97,9 +89,9 @@ async function main() {
       console.log(`done (copied ${offset} rows)`);
     }
 
-    console.log('✅ All tables migrated!');
+    console.log('All tables migrated!');
   } catch (err) {
-    console.error('❌ Migration failed:', err);
+    console.error('Migration failed:', err);
     process.exitCode = 1;
   } finally {
     await src.destroy();

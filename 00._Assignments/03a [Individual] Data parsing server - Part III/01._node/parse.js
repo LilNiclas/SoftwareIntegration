@@ -1,9 +1,6 @@
 import fs from "fs";
-import path from "path";
 import yaml from "yaml";
 import { parseStringPromise } from "xml2js";
-
-const DATA_FOLDER = "C:\\Users\\nicla\\OneDrive\\Documents\\SystemIntegration\\SoftwareIntegration\\Assignments\\03a [Individual] Data parsing server - Part III\\data";
 
 export function parseTxt(filePath) {
     return fs.readFileSync(filePath, "utf-8").split("\n").map(line => line.trim()).filter(Boolean);

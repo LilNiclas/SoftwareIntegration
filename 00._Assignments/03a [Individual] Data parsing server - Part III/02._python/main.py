@@ -5,7 +5,7 @@ from parse import PARSERS
 
 app = FastAPI()
 
-DATA_FOLDER = r"C:\Users\nicla\OneDrive\Documents\SystemIntegration\SoftwareIntegration\Assignments\03a [Individual] Data parsing server - Part III\data"
+DATA_FOLDER = os.path.join(os.path.dirname(__file__), "..", "data")
 
 @app.get("/data/{format}")
 async def get_data(format: str):

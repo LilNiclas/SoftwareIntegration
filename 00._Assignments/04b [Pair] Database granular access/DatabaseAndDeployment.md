@@ -76,7 +76,19 @@ docker run -d --name my-postgres -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES
 docker ps
 ```
 
-## 4. Forbind  lokalt til Databasen og se om alt er korrekt opsat
+### Roller og kodeord
+- admin_user med koden admin123
+- policy_user med koden policy123
+- read_user med koden read123
+
+"""\
+| **Role**      | **Access Level**       | **Permissions**                                                       |
+|---------------|------------------------|------------------------------------------------------------------------|
+| `admin_user`  | Full                   | Full access to all data and actions (SELECT, INSERT, UPDATE, DELETE). |
+| `policy_user` | Restricted | Can only read rows where `id = 1` due to RLS policy.                  |
+| `read_user`   | Read-Only              | Can read all rows (SELECT), but cannot modify or insert any data.     |"""
+
+## 4. Forbind lokalt til Databasen og se om alt er korrekt opsat
 - Lokalt:
     ```powershell
     psql -h localhost -p 5432 -U admin_user -d goats_db
@@ -106,6 +118,13 @@ v
     ```sql
     SELECT* FROM goats;
     ```
+
+- For at opdatere
+```sql
+    UPDATE goats
+    SET name= 'Mr bang'
+    WHERE id = 1;
+```
 
 ## 8. Fejlhåntering hvis indholdet i databasen ikke er der (Hvis nødvendigt)
 Hvis containeren ikke har kørt init.sql korrekt, kan du manuelt eksekvere denne fil i containeren med denne PowerShell-kommando:

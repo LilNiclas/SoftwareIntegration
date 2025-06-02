@@ -52,7 +52,7 @@ Nu skal vi køre PostgreSQL containeren og linke den til vores init.sql-fil, som
 
 Giv denne Powershell kommando
 ```powershell
-docker run -d --name my-postgres -p 5431:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=123 -e POSTGRES_DB=goats_db -v ${PWD}/init.sql:/docker-entrypoint-initdb.d/init.sql:ro -v my_pgdata:/var/lib/postgresql/data postgres:latest
+docker run -d --name my-postgres -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=123 -e POSTGRES_DB=goats_db -v ${PWD}/init.sql:/docker-entrypoint-initdb.d/init.sql:ro -v my_pgdata:/var/lib/postgresql/data postgres:latest
 ```
 
 `-d`: Kør containeren i baggrunden
@@ -76,21 +76,27 @@ docker run -d --name my-postgres -p 5431:5432 -e POSTGRES_USER=admin -e POSTGRES
 docker ps
 ```
 
-## 4. Forbind til Databasen
-
+## 4. Forbind  lokalt til Databasen og se om alt er korrekt opsat
 - Lokalt:
     ```powershell
-    psql -h localhost -p 5431 -U admin_user -d goats_db
+    psql -h localhost -p 5432 -U admin_user -d goats_db
     ```
-    
-- På en anden maskine: Erstat IP-adressen 192.xxx.xx.x og porten 5431 med de rigtige oplysninger:
+
+## 5. Setup DB med ngrok
+- Vælg porten databasen kører på
     ```powershell
-    psql -h 192.xxx.xx.xx -p 5431 -U admin_user -d goats_db
+    ngrok tcp 5432
     ```
 
-## 5. Verificer indholdet i Databasen
-Når du er logget ind på PostgresSQL, kan du tjekke om din tabel er oprettet korrekt
+## 6. Forbind 
+- På en anden maskine: Erstat url x.tcp.eu.ngrok.io og porten med de rigtige oplysninger:
+    ```powershell
+    psql -h 6.tcp.eu.ngrok.io -p 18513 -U admin_user -d goats_db
+    ```
 
+## 7. Verificer indholdet i Databasen
+Når du er logget ind på PostgresSQL, kan du tjekke om din tabel er oprettet korrekt
+v
 - For at se tabellerne
     ```sql
     \dt
@@ -101,7 +107,7 @@ Når du er logget ind på PostgresSQL, kan du tjekke om din tabel er oprettet ko
     SELECT* FROM goats;
     ```
 
-## 6. Fejlhåntering hvis indholdet i databasen ikke er der (Hvis nødvendigt)
+## 8. Fejlhåntering hvis indholdet i databasen ikke er der (Hvis nødvendigt)
 Hvis containeren ikke har kørt init.sql korrekt, kan du manuelt eksekvere denne fil i containeren med denne PowerShell-kommando:
 
 ```powershell

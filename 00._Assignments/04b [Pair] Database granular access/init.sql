@@ -40,10 +40,10 @@ GRANT SELECT ON TABLE goats TO read_user;
 -- Enable RLS
 ALTER TABLE goats ENABLE ROW LEVEL SECURITY;
 
--- Policy for policy_user to only access id = 3
+-- Policy for policy_user to only access id = 1
 CREATE POLICY select_policy ON goats
     FOR SELECT TO policy_user
-    USING (id = 3);
+    USING (id = 1);
 
 -- Admin user all
 CREATE POLICY admin_full_access ON goats

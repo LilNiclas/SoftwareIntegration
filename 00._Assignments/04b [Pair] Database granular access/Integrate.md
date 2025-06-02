@@ -11,9 +11,10 @@ Du vil i følge af dette modtage 2 værdier, der skal bruges til integrationen:
 
 ## 2. Forbind til databasen
 
-- Erstat IP-adressen 192.xxx.xx.x og porten 5431 med de rigtige oplysninger for at komme i forbindelse med databasen:
+- Erstat url x.tcp.eu.ngrok.io og porten 19935 med de rigtige oplysninger for at komme i forbindelse med databasen:
     ```powershell
-    psql -h 192.xxx.xx.xx -p 5431 -U admin_user -d goats_db
+    psql -h 2.tcp.eu.ngrok.io -p 19935 -U admin_user -d goats_db
+
     ```
 - Koden til admin_user er: admin123
 

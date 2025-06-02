@@ -1,7 +1,10 @@
-import pubsub from "../database/pubsubUtil.js";
+import db from "../database/data.js";
 
-const Subscription = {
-    bookAdded: { subscribe: () => pubsub.asyncIterator('BOOK_ADDED') }
-}
+const Book = {
+    author: (parent: any, args: any, context: any, info: any) => {
+        const foundAuthor = db.authors.find((author) => author.id === parent.authorId);
+        return foundAuthor
+    }
+};
 
-export default Subscription;
+export default Book;

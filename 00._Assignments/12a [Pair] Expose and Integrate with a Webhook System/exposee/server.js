@@ -22,7 +22,6 @@ const saveWebhooks = (webhooks) => {
     fs.writeFileSync(WEBHOOK_FILE, JSON.stringify(webhooks, null, 2));
 };
 
-// Register a webhook
 app.post('/register', (req, res) => {
     const { url, event } = req.body;
     if (!url || !event) {
@@ -34,7 +33,6 @@ app.post('/register', (req, res) => {
     res.json({ message: 'Webhook registered successfully.' });
 });
 
-// Unregister a webhook
 app.post('/unregister', (req, res) => {
     const { url, event } = req.body;
     if (!url || !event) {
@@ -45,7 +43,7 @@ app.post('/unregister', (req, res) => {
     res.json({ message: 'Webhook unregistered successfully.' });
 });
 
-// Ping all registered webhooks
+//Ping all registered webhooks
 app.post('/ping', (req, res) => {
     const webhooks = loadWebhooks();
     webhooks.forEach(hook => {
@@ -58,7 +56,6 @@ app.post('/ping', (req, res) => {
     res.json({ message: 'Ping sent to all registered webhooks.' });
 });
 
-// Start the Exposee server
 app.listen(PORT, () => {
     console.log(`Exposee server running on http://localhost:${PORT}`);
 });

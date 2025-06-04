@@ -32,7 +32,6 @@ const resolvers = {
     Query,
     Mutation,
     Subscription,
-
     Book,
     Author
 };

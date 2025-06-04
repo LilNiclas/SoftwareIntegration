@@ -10,6 +10,5 @@ When we create a FastAPI app, it automatically generates an OpenAPI schema and s
 3. Raw OpenAPI JSON:
 `http://localhost:8000/openapi.json`
 ![json](gifs/OpenAPI_json.gif)
-c
 To access the documentation for each service, we enter the correct port and can then see the REST API documentation.
 

@@ -59,11 +59,11 @@ docker run -d --name my-postgres -p 5432:5432 -e POSTGRES_USER=admin -e POSTGRES
 
 `--name my-postgres`: Navn til container
 
-`-p 5431:5432`: Port 5432 fra containeren til port 5431 på din maskine.
+`-p 5432:5432`: Port 5432 fra containeren til port 5431 på din maskine.
 
 `-e POSTGRES_USER=admin`: PostgreSQL brugeren.
 
-`-e POSTGRES_PASSWORD=123`: kodeorder.
+`-e POSTGRES_PASSWORD=123`: kodeord.
 
 `-e POSTGRES_DB=goats_db`: Opret database med navnet goats_db.
 

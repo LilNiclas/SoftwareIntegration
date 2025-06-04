@@ -17,6 +17,8 @@ From the project root:
 
 2. Run pdoc with this command:
    > python -m pdoc services.game_service.app --output-dir docs
+   Requirements __init__.py to know its python module.
+   File path had to be absoulte
 
 This creates HTML files in the `docs/` folder which can be opened directly in the browser.
 

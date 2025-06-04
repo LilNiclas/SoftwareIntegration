@@ -27,7 +27,7 @@ import Subscription from './resolvers/Subscription.js';
 import Book from "./resolvers/Book.js";
 import Author from "./resolvers/Author.js";
 
-
+//logic
 const resolvers = {
     Query,
     Mutation,
